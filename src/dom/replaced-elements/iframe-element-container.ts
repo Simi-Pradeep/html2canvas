@@ -15,8 +15,11 @@ export class IFrameElementContainer extends ElementContainer {
     constructor(iframe: HTMLIFrameElement) {
         super(iframe);
         this.src = iframe.src;
-        this.width = parseInt(iframe.width, 10) || 0;
-        this.height = parseInt(iframe.height, 10) || 0;
+        //this.width = parseInt(iframe.width, 10) || 0;
+        //this.height = parseInt(iframe.height, 10) || 0;
+        const iframeComputedStyle: CSSStyleDeclaration = getComputedStyle(iframe);
+        this.width = parseInt(iframeComputedStyle.width ? iframeComputedStyle.width : '0', 10) || 0;
+        this.height = parseInt(iframeComputedStyle.height ? iframeComputedStyle.height : '0', 10) || 0;
         this.backgroundColor = this.styles.backgroundColor;
         try {
             if (
